@@ -1,3 +1,5 @@
+## First run npm init 
+
 ## Run "npm start" to run backend code.
 
 ## make sure that you update these values( user ans pass) in sendMail function
