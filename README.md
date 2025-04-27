@@ -1,1 +1,2 @@
-# blog-backend
+Run "npm start" to run backend code.
+
