@@ -27,29 +27,6 @@ app.use('/api/blogs', blogRoutes);
 
 app.use('/api/users', usersRoutes)
 
-app.get('/api/verify', async (req, res) => {
-  const token = req.query.token;
-  
-  if (!token) return res.status(400).json({ message: 'Invalid token' });
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.userId);
-
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    user.verified = true;
-    await user.save();
-
-    res.send(`<h2>Email verified successfully!</h2><p>You can now <a href="/">Login</a>.</p>`);
-
-  } catch (err) {
-    
-    res.status(400).json({ message: err.message });
-  }
-});
-
-
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI).then(() => {
   console.log('Connected to MongoDB');
